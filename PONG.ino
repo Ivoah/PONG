@@ -14,33 +14,33 @@
 Adafruit_ILI9340 tft = Adafruit_ILI9340(_cs, _dc, _rst);
 
 // Global variables
-int ball;
+int ball; // Ball radius
 
-int WIDTH;
-int HEIGHT;
+int WIDTH; // Screen width
+int HEIGHT; // Screen height
 
-double x;
-double y;
+double x; // x position of the ball
+double y; // y position of the ball
 
-double ox;
-double oy;
+double ox; // Old x position of the ball
+double oy; // Old y position of the ball
 
-double dx;
-double dy;
+double dx; // Delta x for the ball
+double dy; // Delta y for the ball
 
-int len;
+int len; // Length of the paddles
 
-int p1;
-int p2;
+int p1; // Player 1 position
+int p2; // Player 2 position
 
-int op1;
-int op2;
+int op1; // Old player 1 position
+int op2; // Old player 2 position
 
-int p1Score;
-int p2Score;
+int p1Score; // Player 1 score
+int p2Score; // Player 2 score
 
-int op1Score;
-int op2Score;
+int op1Score; // Old player 1 score
+int op2Score; // Old player 2 score
 
 // Main setup function
 void setup() {
@@ -90,17 +90,17 @@ void loop() {
   tft.drawFastHLine(0, 18, WIDTH, ILI9340_GREEN);
   
   // Draw the score for player 1
-  if (p1Score != op1Score) {
-    tft.drawRect(WIDTH/2 - 10, 5, 5, 8, ILI9340_BLACK);
-    op1Score = p1Score;
-    tft.drawChar(WIDTH/2 - 10, 5, (char)p1Score, ILI9340_GREEN, ILI9340_BLACK, 1);
+  if (p1Score != op1Score) { // If the score has changed...
+    tft.drawRect(WIDTH/2 - 10, 5, 5, 8, ILI9340_BLACK); // Then erase the old score...
+    op1Score = p1Score; // Set the old score to the current score...
+    tft.drawChar(WIDTH/2 - 10, 5, (char)p1Score, ILI9340_GREEN, ILI9340_BLACK, 1); // And draw the new score
   }
   
   // Draw The score for player 2
-  if (p2Score != op2Score) {
-    tft.drawRect(WIDTH/2 + 5, 5, 5, 8, ILI9340_BLACK); 
-    op2Score = p2Score;
-    tft.drawChar(WIDTH/2 + 5, 5, (char)p2Score, ILI9340_GREEN, ILI9340_BLACK, 1);
+  if (p2Score != op2Score) { // If the score has changed...
+    tft.drawRect(WIDTH/2 + 5, 5, 5, 8, ILI9340_BLACK); // Then erase the old score...
+    op2Score = p2Score; // Set the old score to the current score...
+    tft.drawChar(WIDTH/2 + 5, 5, (char)p2Score, ILI9340_GREEN, ILI9340_BLACK, 1); // And draw the new score
   }
   
   // Draw the ball
