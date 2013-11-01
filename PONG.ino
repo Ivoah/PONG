@@ -36,8 +36,8 @@ int p2; // Player 2 position
 int op1; // Old player 1 position
 int op2; // Old player 2 position
 
-int p1Score; // Player 1 score
-int p2Score; // Player 2 score
+char p1Score; // Player 1 score
+char p2Score; // Player 2 score
 
 int op1Score; // Old player 1 score
 int op2Score; // Old player 2 score
@@ -58,7 +58,7 @@ void setup() {
   ball = 3;
   
   x = WIDTH/2;
-  y = (HEIGHT + 18)/2;
+  y = (HEIGHT - 18)/2 + 18;
   
   ox = !x;
   oy = !y;
@@ -74,8 +74,8 @@ void setup() {
   op1 = !p1;
   op2 = !p2;
   
-  p1Score = 48;
-  p2Score = 48;
+  p1Score = 48; //ASCII character 0
+  p2Score = 48; //ASCII character 0
   
   op1Score = !p1Score;
   op2Score = !p2Score;
@@ -93,14 +93,14 @@ void loop() {
   if (p1Score != op1Score) { // If the score has changed...
     tft.drawRect(WIDTH/2 - 10, 5, 5, 8, ILI9340_BLACK); // Then erase the old score...
     op1Score = p1Score; // Set the old score to the current score...
-    tft.drawChar(WIDTH/2 - 10, 5, (char)p1Score, ILI9340_GREEN, ILI9340_BLACK, 1); // And draw the new score
+    tft.drawChar(WIDTH/2 - 10, 5, p1Score, ILI9340_GREEN, ILI9340_BLACK, 1); // And draw the new score
   }
   
   // Draw The score for player 2
   if (p2Score != op2Score) { // If the score has changed...
     tft.drawRect(WIDTH/2 + 5, 5, 5, 8, ILI9340_BLACK); // Then erase the old score...
     op2Score = p2Score; // Set the old score to the current score...
-    tft.drawChar(WIDTH/2 + 5, 5, (char)p2Score, ILI9340_GREEN, ILI9340_BLACK, 1); // And draw the new score
+    tft.drawChar(WIDTH/2 + 5, 5, p2Score, ILI9340_GREEN, ILI9340_BLACK, 1); // And draw the new score
   }
   
   // Draw the ball
@@ -134,7 +134,7 @@ void loop() {
     } else {
       p2Score++;
       x = WIDTH/2;
-      y = HEIGHT/2;
+      y = (HEIGHT - 18)/2 + 18;
       tone(3, 262);
     }
   }
@@ -147,7 +147,7 @@ void loop() {
     } else {
       p1Score++;
       x = WIDTH/2;
-      y = (HEIGHT + 18)/2;
+      y = (HEIGHT - 18)/2 + 18;
       tone(3, 262);
     }
   }
